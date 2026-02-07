@@ -1,0 +1,34 @@
+# 依赖
+node_modules
+.pnpm-store
+
+# VitePress 缓存
+.vitepress/cache
+.vitepress/.temp
+
+# Git
+.git
+.github
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# 日志
+*.log
+npm-debug.log*
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 测试
+coverage
+.nyc_output
+
+# 其他
+.env
+.env.local
+dist

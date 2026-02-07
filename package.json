@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "@movk-repo/vitepress-plugin-auto-nav-sidebar": "^1.0.4"
+  }
+}

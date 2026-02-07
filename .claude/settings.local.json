@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run docs:dev:*)",
+      "Bash(npm run)",
+      "Bash(npm run dev:*)",
+      "Bash(if exist:*)",
+      "Bash(node:*)",
+      "Bash(npm run build:*)",
+      "Read(//f/workspace/blog-news-fastify-api/**)"
+    ]
+  }
+}
