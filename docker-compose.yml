@@ -1,9 +1,7 @@
 services:
   # 生产环境 - 静态站点服务
   ai-markdown:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: registry.cn-shanghai.aliyuncs.com/reuben_home/ai-markdown:latest
     container_name: ai-markdown
     ports:
       - "8263:80"
@@ -14,9 +12,6 @@ services:
       - ai-network
     labels:
       - "com.ai-markdown.description=AI Markdown VitePress Site"
-    profiles:
-      - production
-
 
   # Watchtower - 自动更新容器镜像
   watchtower:
