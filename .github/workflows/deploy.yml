@@ -16,31 +16,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 安装 pnpm
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: latest
-
       # 安装 Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'pnpm'
+          cache: 'npm'
 
       # 安装依赖
       - name: Install dependencies
-        run: pnpm install
+        run: npm ci
 
       # 构建静态站点
       - name: Build VitePress site
-        run: pnpm run build
+        run: npm run build
         env:
-          # 如果遇到 Windows 权限问题，可以设置环境变量
           NODE_ENV: production
 
-      # 登录到阿里云 ACR（可选）
+      # 登录到阿里云 ACR
       - name: Login to Aliyun ACR
         if: github.ref == 'refs/heads/master'
         uses: docker/login-action@v3
