@@ -3,6 +3,8 @@ import VitePressPluginAutoNavSidebar from '@movk-repo/vitepress-plugin-auto-nav-
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  // 源文件目录
+  srcDir: './src',
   title: "AI Markdown",
   description: "Ai生成的markdown文档",
 

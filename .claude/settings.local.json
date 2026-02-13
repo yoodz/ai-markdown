@@ -9,7 +9,6 @@
       "Bash(node:*)",
       "Bash(npm run build:*)",
       "Read(//f/workspace/blog-news-fastify-api/**)",
-      "Bash(docker-compose ps:*)"
     ]
   }
 }
