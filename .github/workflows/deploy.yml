@@ -30,19 +30,26 @@ jobs:
       - name: Build VitePress site
         run: npm run build
 
-      # 4. 部署到阿里云服务器
+      # 4. 部署到阿里云服务器（使用 SCP）
       - name: Deploy to Aliyun server
-        uses: easingthemes/ssh-deploy@v4.1.8
-        with:
-          # 服务器连接信息
+        env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_TARGET_DIR: ${{ secrets.REMOTE_TARGET_DIR }}
+        run: |
+          # 设置 SSH 密钥
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$REMOTE_HOST" >> ~/.ssh/known_hosts
 
-          # 源目录（构建输出）和目标目录
-          SOURCE: ".vitepress/dist/*"
-          TARGET: ${{ secrets.REMOTE_TARGET_DIR }}
+          # 确保目标目录存在
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no "$REMOTE_USER@$REMOTE_HOST" \
+            "mkdir -p '$REMOTE_TARGET_DIR'"
 
-          # 删除目标目录中不存在于源目录的文件
-          EXCLUDE: "/node_modules/"
-          ARGS: "-avzr --delete"
+          # 使用 SCP 上传文件（直接覆盖同名文件）
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -r \
+            .vitepress/dist/* "$REMOTE_USER@$REMOTE_HOST:$REMOTE_TARGET_DIR/"
+
+          echo "✅ 部署成功！"
