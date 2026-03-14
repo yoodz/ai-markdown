@@ -23,7 +23,7 @@ onMounted(async () => {
       const titleMatch = content.match(/^#\s+(.+)$/m)
       const title = titleMatch ? titleMatch[1].trim() : cleanPath
       const descMatch = content.match(/^description:\s*(.+)$/m)
-      const dateMatch = content.match(/^date:\\s*(.+)$/m)
+      const dateMatch = content.match(/^date:\s*(.+)$/m)
       const date = dateMatch ? dateMatch[1].trim() : null
       const description = descMatch ? descMatch[1].trim() : '-'
 
