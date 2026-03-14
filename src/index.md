@@ -23,6 +23,8 @@ onMounted(async () => {
       const titleMatch = content.match(/^#\s+(.+)$/m)
       const title = titleMatch ? titleMatch[1].trim() : cleanPath
       const descMatch = content.match(/^description:\s*(.+)$/m)
+      const dateMatch = content.match(/^date:\\s*(.+)$/m)
+      const date = dateMatch ? dateMatch[1].trim() : null
       const description = descMatch ? descMatch[1].trim() : '-'
 
       // 移除 frontmatter，保留正文内容用于搜索
@@ -39,6 +41,7 @@ onMounted(async () => {
         title,
         link: `/${cleanPath}`,
         description,
+        date,
         content: cleanContent
       })
     } catch {
@@ -46,7 +49,15 @@ onMounted(async () => {
     }
   }
 
-  fileList.sort((a, b) => a.title.localeCompare(b.title, 'zh-CN'))
+  // 按修改时间倒序排序（最新文章在前）
+  fileList.sort((a, b) => {
+    // 优先按 date 字段排序（Frontmatter 中的 date）
+    if (a.date && b.date) {
+      return new Date(b.date) - new Date(a.date)
+    }
+    // 没有 date 则按标题排序
+    return a.title.localeCompare(b.title, 'zh-CN')
+  })
   allDocs.value = fileList
 })
 
