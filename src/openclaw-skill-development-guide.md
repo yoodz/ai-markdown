@@ -1,3 +1,8 @@
+---
+title: OpenClaw 技能开发实战：创建 ai-markdown-writer
+description: 完整记录创建 ai-markdown-writer 技能的全过程，包括项目调研、技能创建、触发词设计和 Git 推送
+---
+
 # OpenClaw 技能开发实战：创建 ai-markdown-writer
 
 > **时间：** 2026-03-14  
@@ -33,8 +38,8 @@ cat /home/ai/ai-markdown/src/shanghai-spring-festival-guide-2026.md
 ```
 
 **发现：**
-- 不需要 Frontmatter
-- 直接以 `# 标题` 开头
+- 部分文章有 Frontmatter（title + description）
+- 部分文章直接以 `# 标题` 开头
 - 纯 Markdown 格式
 
 ---
@@ -60,7 +65,7 @@ mkdir -p ~/.openclaw/skills/ai-markdown-writer
 1. 创建文章 → src/文章名.md
 2. 分多次接收内容
 3. 完成后 Git 推送
-4. 返回访问链接：https://am.afunny.top/文章名
+4. 返回访问链接：https://am.afunny.top/文章名.html
 ```
 
 ### 3. 编写脚本
@@ -96,7 +101,7 @@ cd /home/ai/ai-markdown
 git add "src/${ARTICLE_NAME}.md"
 git commit -m "feat: 新增文章 ${ARTICLE_NAME}"
 git push
-echo "🔗 可访问链接：https://am.afunny.top/${ARTICLE_NAME}"
+echo "🔗 可访问链接：https://am.afunny.top/${ARTICLE_NAME}.html"
 ```
 
 ### 4. 设置执行权限
@@ -131,7 +136,7 @@ chmod +x ~/.openclaw/skills/ai-markdown-writer/*.sh
 
 | 触发词 | 技能 | 项目 | 访问链接 |
 |--------|------|------|---------|
-| `保存一下文章` | ai-markdown-writer | `/home/ai/ai-markdown/` | https://am.afunny.top/文章名 |
+| `保存一下文章` | ai-markdown-writer | `/home/ai/ai-markdown/` | https://am.afunny.top/文章名.html |
 | `新增一篇文章，名字叫 xxx` | vitepress-writer | `/home/ai/blog-vitepress/` | (无) |
 
 ---
@@ -170,7 +175,7 @@ chmod +x ~/.openclaw/skills/ai-markdown-writer/*.sh
 
 用户：git 推送
 助手：✅ 已推送！
-🔗 可访问链接：https://am.afunny.top/openclaw-skill-development-guide
+🔗 可访问链接：https://am.afunny.top/openclaw-skill-development-guide.html
 ```
 
 ---
@@ -202,6 +207,12 @@ Agent 私有技能 > 全局技能 > 系统预装技能
 - 错误处理：检查文件是否存在
 - 权限设置：`chmod +x`
 
+### 4. 文章格式规范
+
+- **Frontmatter**：必须包含 `title` 和 `description`
+- **访问链接**：以 `.html` 结尾
+- **文件命名**：支持中文，推荐英文（兼容性好）
+
 ---
 
 ## 📊 项目信息对比
@@ -210,7 +221,7 @@ Agent 私有技能 > 全局技能 > 系统预装技能
 |------|-------------|----------------|
 | 路径 | `/home/ai/ai-markdown/` | `/home/ai/blog-vitepress/` |
 | 文章目录 | `src/` | `docs/` |
-| Frontmatter | ❌ 不需要 | ✅ 需要（JSON 格式） |
+| Frontmatter | ✅ 推荐（title + description） | ✅ 需要（JSON 格式） |
 | Git 远程 | github.com/yoodz/ai-markdown | (你的 blog 仓库) |
 | 访问域名 | https://am.afunny.top | (未配置) |
 | 返回链接 | ✅ 推送后返回 | ❌ 不返回 |
