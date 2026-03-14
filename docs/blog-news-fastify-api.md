@@ -1,6 +1,7 @@
 ---
 title: 博客新闻 API 接口文档
 description: 博客新闻系统的 Fastify API 接口文档，包含文章管理、RSS 订阅、访问统计等功能
+date: 2026-02-13
 ---
 
 # 博客新闻 API 接口文档

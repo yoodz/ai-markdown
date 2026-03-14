@@ -1,3 +1,9 @@
+---
+title: Xray 代理配置指南
+description: 在 Linux 系统上配置 Xray 代理的完整指南
+date: 2026-02-13
+---
+
 # Xray 代理配置指南
 
 本文档记录如何在 Linux 系统上配置 Xray 代理，以便访问 Google 和 Brave Search API。

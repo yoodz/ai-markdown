@@ -1,3 +1,9 @@
+---
+title: 使用 UUID 在 PVE 中挂载磁盘
+description: 在 Proxmox VE 中使用 UUID 持久化挂载磁盘的完整指南
+date: 2026-02-13
+---
+
 # 使用 UUID 在 PVE 中挂载磁盘
 
 在 Proxmox VE (PVE) 中，UUID 挂载通常用于持久化存储设备的挂载，避免因设备名（如 `/dev/sdb1`）变化而导致挂载失败。以下是使用 UUID 在 PVE 中挂载磁盘的步骤：

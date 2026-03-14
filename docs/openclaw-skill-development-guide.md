@@ -1,6 +1,7 @@
 ---
 title: OpenClaw 技能开发实战：创建 ai-markdown-writer
 description: 完整记录创建 ai-markdown-writer 技能的全过程，包括项目调研、技能创建、触发词设计和 Git 推送
+date: 2026-03-14
 ---
 
 # OpenClaw 技能开发实战：创建 ai-markdown-writer

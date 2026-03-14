@@ -5,6 +5,9 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
-    "@movk-repo/vitepress-plugin-auto-nav-sidebar": "^1.0.4"
+    "vitepress": "^1.6.4"
+  },
+  "dependencies": {
+    "vitepress-sidebar": "^1.33.1"
   }
 }
